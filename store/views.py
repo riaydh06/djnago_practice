@@ -63,9 +63,9 @@ def collection_list(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@api_view()
+@api_view(['GET','PUT', 'DELETE'])
 def collection_details(request, pk):
-    collection = get_object_or_404(Collection.objects.annotate(products_count=Count('products')),pk=id)
+    collection = get_object_or_404(Collection.objects.annotate(products_count=Count('products')),pk=pk)
     if request.method == 'GET':
         serializer = CollectionSerializer(collection)
         return Response(serializer.data)
