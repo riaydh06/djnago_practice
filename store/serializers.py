@@ -8,8 +8,10 @@ from store.models import Product, Collection
 #     title = serializers.CharField(max_length= 255)
 
 class CollectionSerializer(serializers.ModelSerializer):
-    model = Collection
-    fields = ['id', 'title']
+    class Meta: 
+        model = Collection
+        fields = ['id', 'title', 'products_count']
+    products_count = serializers.IntegerField()
 
 # class ProductSerializer(serializers.Serializer):
 #     id= serializers.IntegerField()
@@ -51,3 +53,6 @@ class ProductSerializer(serializers.ModelSerializer):
     #     if data['password'] !=data['confirm_password']:
     #         return serializers.ValidationError('Error')
     #     return data
+
+    
+    
